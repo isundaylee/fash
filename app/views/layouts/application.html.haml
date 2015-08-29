@@ -2,9 +2,19 @@
 %html
   %head
     %title= "FASH"
-    %meta{ content: "Fash. TODO: Description here. ", name: "description" }
+    %meta{content: "Fash. TODO: Description here. ", name: "description"}
+    %link{href: 'https://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,600', rel: 'stylesheet', type: 'text/css'}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    %header
+      %h1 FASH
+      %nav
+        %div
+          = form_tag '/' do
+            = text_field_tag 'username', '', placeholder: 'username'
+            = text_field_tag 'password', '', placeholder: 'password'
     = yield
+    %footer
+      %p Made with Love by FASH
