@@ -12,9 +12,26 @@
       %h1 FASH
       %nav
         %div
-          = form_tag '/' do
-            = text_field_tag 'username', '', placeholder: 'username'
-            = text_field_tag 'password', '', placeholder: 'password'
+          - if user_signed_in?
+            #welcome
+              %span
+                Welcome,
+                = current_user.name
+              = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'button'
+          - else
+            %a.button{href: new_user_registration_path} Sign Up
+            = form_for User.new, url: new_user_session_path do |f|
+              = f.text_field :email, placeholder: 'email address'
+              = f.password_field :password, placeholder: 'password'
+              = f.submit 'Sign In'
+    .container#flash
+      - if flash[:alert].present? || @flash[:alert].present?
+        %div#alert= flash[:alert].presence || @flash[:alert].presence
+      - if flash[:success].present? || @flash[:success].present?
+        %div#success= flash[:success].presence || @flash[:success].presence
+      / Devise uses :notice. Treat as :success
+      - if flash[:notice].present? || @flash[:notice].present?
+        %div#success= flash[:notice].presence || @flash[:notice].presence
     = yield
     %footer
       %p Made with Love by FASH

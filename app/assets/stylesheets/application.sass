@@ -21,6 +21,8 @@ $violet: #A92A4A
 $pink: #D495A5
 $violet-dark: darken($violet, 8%)
 
+$centre-form-width: 400px
+
 @import 'pages'
 
 body
@@ -39,6 +41,17 @@ header
 
   nav
     background-color: $violet
+
+    .button
+      font-family: $sans-serif
+      font-size: 1.1em
+      color: #FFFFFF
+      text-decoration: none
+      font-weight: 200
+      padding: 0.5em 0.8em
+      margin: 1em 0em 1em 0em
+      display: inline-block
+      background-color: $violet-dark
 
     > div
       @include outer-container
@@ -60,6 +73,47 @@ header
           line-height: 1.1em
           color: #FFFFFF
 
+      // welcome message / buttons
+      #welcome
+        float: right
+
+        span
+          font-family: $sans-serif
+          font-size: 1.1em
+          font-weight: 300
+          color: #FFFFFF
+          margin-right: 1em
+
+#flash
+  padding-top: 1em
+
+  div
+    font-family: $sans-serif
+    font-size: 1.2em
+    font-weight: 300
+    text-align: center
+    color: white
+    margin: 0 auto 1em
+    padding: 1em
+    width: 100%
+
+    p
+      margin-top: 0
+      margin-bottom: 0
+
+  #alert
+    background-color: $violet
+
+  #success
+    background-color: #119C5D
+
+h2
+  font-family: $sans-serif
+  font-weight: 300
+  font-size: 3em
+  text-align: center
+  margin-bottom: 0.5em
+
 footer
   background-color: $violet
   padding-top: 3em
@@ -75,3 +129,39 @@ footer
 
 .container
   @include outer-container
+
+// Form styles
+
+.centre-form
+  width: $centre-form-width
+  margin-left: auto
+  margin-right: auto
+
+  input
+    width: 100%
+    border: 1px solid #CCCCCC
+    padding: 0.5em 0.8em
+    background-color: #EEEEEE
+    font-size: 1.1em
+    font-weight: 200
+    font-family: $sans-serif
+    line-height: 1.1em
+    color: #000000
+    margin-top: 1em
+
+    &::placeholder
+      color: #FFFFFF
+
+  input[type=submit]
+    margin-top: 3em
+    margin-bottom: 5em
+    background-color: $violet
+    color: #FFFFFF
+
+// Utility classes
+
+.float-right
+  float: right
+
+.float-left
+  float: left
