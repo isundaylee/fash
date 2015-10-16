@@ -1,0 +1,17 @@
+%h2 Post Your Clothes
+
+#container
+  = form_for(@item, html: {class: 'centre-form'}) do |f|
+    - unless @item.errors.empty?
+      #flash
+        #alert
+          = simple_format @item.errors.full_messages.join("\n")
+    = f.select :gender, Item::GENDER_OPTIONS, {}, {'data-placeholder' => 'Gender', 'data-minimum-results-for-search' =>'Infinity'}
+    = f.select :size, Item::SIZE_OPTIONS, {}, {'data-placeholder' => 'Gender', 'data-minimum-results-for-search' =>'Infinity'}
+    = f.select :category, Item::CATEGORY_OPTIONS, {}, {'data-placeholder' => 'Category of the item. '}
+    = f.select :color, Item::COLOR_OPTIONS, {}, {'data-placeholder' => 'Color of the item. '}
+    = f.text_field :brand, placeholder: 'Brand of the item. ', class: 'space-above'
+    = f.text_field :price, placeholder: 'Price per day in dollars. ', class: 'space-above'
+    = f.text_field :insurance_claim, placeholder: 'The insurance value (in dollars) you are claiming. '
+
+    = f.submit "Post"
