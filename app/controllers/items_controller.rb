@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
     @item.user = current_user
 
     if @item.save
-      redirect_to item_path(@item), flash: {success: 'Congrats – you just posted a new item! Now add some pictures to it from here. '}
+      redirect_to item_path(@item), flash: {success: 'Congrats – you just posted a new item! Now add some pictures for it from here. '}
     else
       render 'new'
     end
