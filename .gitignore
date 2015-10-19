@@ -13,3 +13,6 @@
 /tmp
 
 /vendor/ruby
+
+# added by GitSavvy
+public/system/
