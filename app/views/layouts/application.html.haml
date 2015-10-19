@@ -20,7 +20,8 @@
                 Welcome,
                 = current_user.name
               = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'button'
-            %a.button.float-right{href: new_item_path} Post Your Clothes
+            %a.button.float-right{href: new_item_path} Post Your Items
+            %a.button.float-right{href: items_path} Browse Items
           - else
             %a.button{href: new_user_registration_path} Sign Up
             = form_for User.new, url: new_user_session_path do |f|

@@ -1,0 +1,16 @@
+= form_tag items_path, method: :get, id: 'index_search' do
+  %div
+    = select_tag :gender, options_for_select([['Any Gender', 'any']] + Item::GENDER_OPTIONS, params[:gender] || ''), {'data-placeholder' => 'Gender', 'data-minimum-results-for-search' =>'Infinity'}
+  %div
+    = select_tag :category, options_for_select([['Any Category', 'any']] + Item::CATEGORY_OPTIONS, params[:category] || ''), {'data-placeholder' => 'Category', 'data-minimum-results-for-search' =>'Infinity'}
+  %div
+    = select_tag :price_range, options_for_select([['Any Price', 'any']] + Item::PRICE_RANGE_OPTIONS, params[:price_range] || ''), {'data-placeholder' => 'Price Range', 'data-minimum-results-for-search' =>'Infinity'}
+
+#showcase
+  - @items.each do |i|
+    - if i.previews.any?
+      %a{href: item_path(i)}
+        %div
+          = image_tag(i.previews.first.image.url(:thumb))
+          %div.summary
+            = "#{i.gender.capitalize} - #{i.size}, $#{i.price} per day"

@@ -10,5 +10,9 @@ ready = ->
     $('#new_preview input[type=file]').change ->
       $('#new_preview input[type=submit]').click()
 
+  if $('body#items_index').length > 0
+    $('#index_search select').change ->
+      $('#index_search').submit()
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

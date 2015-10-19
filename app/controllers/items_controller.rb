@@ -20,6 +20,21 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def index
+    things = Item.order('updated_at DESC')
+
+    puts params
+
+    things = things.where(gender: Item.genders[params[:gender]]) if (params[:gender].present? && params[:gender] != 'any')
+    things = things.where(category: params[:category]) if (params[:category].present? && params[:category] != 'any')
+    if (params[:price_range].present? && params[:price_range] != 'any')
+      low, high = params[:price_range].split('-')
+      things = things.where('price >= ? AND price <= ?', low.to_i, high.to_i)
+    end
+
+    @items = things.all
+  end
+
   private
     def item_params
       params.require(:item).permit(:size, :gender, :category, :price, :insurance_claim, :color, :brand)

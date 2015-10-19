@@ -3,6 +3,13 @@ class Item < ActiveRecord::Base
   SIZE_OPTIONS = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL']
   CATEGORY_OPTIONS = ['Dress Shirt', 'T-Shirt', 'Pant', 'Suit', 'Tuxedo']
   COLOR_OPTIONS = ['Crimson', 'Aqua', 'White', 'Black']
+  PRICE_RANGE_OPTIONS = [
+    ['$1-$5', '1-5'],
+    ['$5-$10', '5-10'],
+    ['$10-$20', '10-20'],
+    ['$20-$50', '20-50'],
+    ['$50-$100', '50-100']
+  ]
 
   enum gender: [:male, :female, :unisex]
 

@@ -46,3 +46,43 @@
         margin: 0 auto
         display: block
         border: 2px solid #FFF
+
+#items_index
+  #index_search
+    @include outer-container
+
+    > div
+      @include span-columns(4)
+
+      display: block
+
+      .select2
+        width: 100% !important
+
+  #showcase
+    @include outer-container
+
+    margin-top: 2em
+    margin-bottom: 3em
+
+    > a
+      @include span-columns(3)
+      @include omega(4n)
+
+      position: relative
+
+      img
+        width: 100%
+        display: block
+
+      .summary
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        font-family: $sans-serif
+        font-size: 1.1em
+        background-color: rgba(0, 0, 0, 0.7)
+        color: #FFF
+        font-weight: 200
+        padding: 0.5em 1em
