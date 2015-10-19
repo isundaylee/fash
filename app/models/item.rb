@@ -8,6 +8,8 @@ class Item < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :previews
+
   validates :size, presence: true, inclusion: SIZE_OPTIONS
   validates :gender, presence: true
   validates :category, presence: true, inclusion: CATEGORY_OPTIONS

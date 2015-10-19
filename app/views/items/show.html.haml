@@ -1,6 +1,13 @@
 #showcase
-  - 4.times do
-    %img{:src => "http://placehold.it/600x400", :alt => ""}/
+  - @item.previews.each do |p|
+    %img{src: p.image.url(:thumb)}/
+  - if @item.user == current_user
+    %a{href: '#'}
+      %img#upload_preview{src: asset_path('upload_preview.png')}
+    = form_for @item.previews.new, html: {style: 'display: none; '} do |f|
+      = f.file_field :image
+      = f.hidden_field :item_id
+      = f.submit ''
 
 #info
   .info-section
