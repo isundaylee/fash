@@ -40,7 +40,7 @@ gem 'devise'
 gem 'select2-rails'
 
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk-v1'
 
 gem "paranoia", "~> 2.0"
 
