@@ -21,6 +21,8 @@ class ItemsController < ApplicationController
   end
 
   def calendar
+    @item = Item.find(params[:id])
+
     @start_date = Date.today.at_beginning_of_month
     @end_date = Date.today.at_end_of_month
 
@@ -30,10 +32,23 @@ class ItemsController < ApplicationController
     render layout: nil
   end
 
+  def reserve
+    @item = Item.find(params[:id])
+    @reservation = Reservation.new(reservation_params)
+    @reservation.item = @item
+    @reservation.user = current_user
+
+    @reservation.save!
+
+    if @reservation.item.user == current_user
+      redirect_to item_path(@item), flash: {success: 'You have successfully reserved those days! '}
+    else
+      raise NotImplementedError
+    end
+  end
+
   def index
     things = Item.order('updated_at DESC')
-
-    puts params
 
     things = things.where(gender: Item.genders[params[:gender]]) if (params[:gender].present? && params[:gender] != 'any')
     things = things.where(category: params[:category]) if (params[:category].present? && params[:category] != 'any')
@@ -48,5 +63,9 @@ class ItemsController < ApplicationController
   private
     def item_params
       params.require(:item).permit(:size, :gender, :category, :price, :insurance_claim, :color, :brand)
+    end
+
+    def reservation_params
+      params.require(:reservation).permit(:start_date, :end_date)
     end
 end

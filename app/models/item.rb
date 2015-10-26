@@ -16,6 +16,7 @@ class Item < ActiveRecord::Base
   belongs_to :user
 
   has_many :previews
+  has_many :reservations
 
   validates :size, presence: true, inclusion: SIZE_OPTIONS
   validates :gender, presence: true
@@ -23,4 +24,8 @@ class Item < ActiveRecord::Base
   validates :price, presence: true, numericality: {minimum: 1.0}
   validates :insurance_claim, presence: true, numericality: {minimum: 1.0}
   validates :color, presence: true
+
+  def available_on?(date)
+    !reservations.select { |r| r.start_date <= date && date <= r.end_date }.any?
+  end
 end

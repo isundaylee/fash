@@ -70,6 +70,16 @@
 
         border: 2px solid $violet
 
+      td.unavailable
+        color: #FFF
+        background-color: $violet
+
+      td.active
+        background-color: transparentize($violet, 0.5)
+
+    #new_reservation
+      display: none
+
 #items_index
   #index_search
     @include outer-container

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create, :show, :index] do
     member do
       get 'calendar'
+      post 'reserve'
     end
   end
 

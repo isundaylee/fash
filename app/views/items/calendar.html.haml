@@ -1,10 +1,14 @@
-%table
+%table#calendar_table{'data-month_prefix' => @start_date.strftime('%Y-%m')}
   %thead
     %tr
       %th{colspan: 7}= @start_date.strftime('%B')
   - @rows.each do |r|
     %tr
       - r.each do |d|
-        %td
+        %td{class: (d.present? && @item.available_on?(d)) ? '' : 'unavailable', 'data-day' => (d.present? ? d.day : nil)}
           - unless d.nil?
             = d.day
+  = form_for @item.reservations.new, url: reserve_item_path(@item) do |f|
+    = f.hidden_field :start_date
+    = f.hidden_field :end_date
+    = f.hidden_field :item_id
