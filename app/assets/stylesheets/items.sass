@@ -47,6 +47,29 @@
         display: block
         border: 2px solid #FFF
 
+  #calendar
+    @include outer-container
+
+    table
+      width: 100%
+      border-collapse: collapse
+      margin-bottom: 5em
+
+      thead
+        background-color: $violet
+
+      th
+        color: #FFF
+
+      td, th
+        font-family: $sans-serif
+        font-weight: 200
+        text-align: center
+        font-size: 1.6em
+        line-height: 3.3em
+
+        border: 2px solid $violet
+
 #items_index
   #index_search
     @include outer-container

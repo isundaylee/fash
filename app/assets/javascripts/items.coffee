@@ -9,6 +9,7 @@ ready = ->
       false
     $('#new_preview input[type=file]').change ->
       $('#new_preview input[type=submit]').click()
+    $('#calendar').load('/items/' + $('#calendar').data('item_id') + '/calendar')
 
   if $('body#items_index').length > 0
     $('#index_search select').change ->

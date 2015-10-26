@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   root 'pages#homepage'
 
-  resources :items, only: [:new, :create, :show, :index]
+  resources :items, only: [:new, :create, :show, :index] do
+    member do
+      get 'calendar'
+    end
+  end
+
   resources :previews, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.

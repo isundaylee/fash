@@ -20,6 +20,16 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def calendar
+    @start_date = Date.today.at_beginning_of_month
+    @end_date = Date.today.at_end_of_month
+
+    @rows = [nil] * @start_date.wday + (@start_date..@end_date).to_a
+    @rows = @rows.each_slice(7).to_a
+
+    render layout: nil
+  end
+
   def index
     things = Item.order('updated_at DESC')
 
