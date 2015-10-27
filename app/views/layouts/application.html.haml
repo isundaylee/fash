@@ -11,7 +11,8 @@
     = csrf_meta_tags
   %body{id: params[:controller] + '_' + params[:action]}
     %header
-      %h1 FASH
+      %h1
+        %a{href: root_path} FASH
       %nav
         %div
           - if user_signed_in?
