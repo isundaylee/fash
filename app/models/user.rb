@@ -4,9 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :reservations
+  validates :name, presence: true, length: {minimum: 3, maximum: 50}
 
-  def name
-    email.split('@').first.capitalize
-  end
+  has_many :reservations
 end

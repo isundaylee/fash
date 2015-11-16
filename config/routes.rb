@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'items/new'
 
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'registrations'}
   root 'pages#homepage'
 
   resources :items, only: [:new, :create, :show, :index] do
