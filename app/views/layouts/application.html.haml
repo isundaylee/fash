@@ -5,8 +5,10 @@
     %meta{content: "Fash. TODO: Description here. ", name: "description"}
     %link{href: 'https://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,600', rel: 'stylesheet', type: 'text/css'}
     / %link{rel: "stylesheet", href: "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css"}
+    %script{src: 'https://checkout.stripe.com/checkout.js'}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = include_gon
     / %script{src: '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js'}
     = csrf_meta_tags
   %body{id: params[:controller] + '_' + params[:action]}

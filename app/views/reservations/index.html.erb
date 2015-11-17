@@ -56,7 +56,13 @@
           <p class="state">You're all set ;)</p>
         <% end %>
 
-        <%= link_to 'Pay', pay_reservation_path(r), class: 'action' if r.may_pay? %>
+        <% if r.may_pay? %>
+          <%= link_to 'Pay', '#', class: 'action', data: {amount: (r.price * 100).to_i, direct: current_user.stripe_customer_id.present?} %>
+          <%= form_tag pay_reservation_path(r), class: 'stripe-token-form' do %>
+            <%= hidden_field_tag :stripe_token %>
+            <%= submit_tag '' %>
+          <% end %>
+        <% end %>
         <%= link_to 'Cancel', cancel_reservation_path(r), class: 'action', data: {confirm: 'Do you really wanna cancel this reservation? '}, method: :post if r.may_cancel? %>
       </div>
     <% end %>

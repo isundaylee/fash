@@ -19,8 +19,7 @@ Rails.application.routes.draw do
       post 'cancel'
       post 'approve'
       post 'reject'
-
-      get 'pay'
+      post 'pay'
     end
   end
 
