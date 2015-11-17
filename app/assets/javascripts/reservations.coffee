@@ -11,8 +11,6 @@ ready = ->
       token: (token) ->
         window.current_form.find('[name=stripe_token]').val(token.id)
         window.current_form.submit()
-        console.log(window.current_form)
-        alert('a')
         return
     )
 
