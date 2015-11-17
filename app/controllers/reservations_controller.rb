@@ -82,6 +82,6 @@ class ReservationsController < ApplicationController
 
     @reservation.pay
     @reservation.save!
-    redirect_to reservations_url, flash: {alert: 'You have paid for the reservation. '}
+    redirect_to reservations_url, flash: {success: 'You have paid for the reservation. '}
   end
 end
