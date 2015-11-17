@@ -26,6 +26,6 @@ class Item < ActiveRecord::Base
   validates :color, presence: true
 
   def available_on?(date)
-    !reservations.select { |r| r.start_date <= date && date <= r.end_date }.any?
+    !reservations.select { |r| r.start_date <= date && date <= r.end_date }.select(&:blocking?).any?
   end
 end

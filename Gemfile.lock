@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.5.0)
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
       actionview (= 4.2.1)
@@ -184,6 +185,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   aws-sdk-v1
   byebug
   coffee-rails (~> 4.1.0)

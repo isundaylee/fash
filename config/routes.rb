@@ -14,6 +14,16 @@ Rails.application.routes.draw do
 
   resources :previews, only: [:create]
 
+  resources :reservations, only: [:index] do
+    member do
+      post 'cancel'
+      post 'approve'
+      post 'reject'
+
+      get 'pay'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

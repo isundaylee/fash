@@ -1,0 +1,48 @@
+// Place all the styles related to the reservations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#reservations_index
+  p
+    font-size: 1.1em
+    font-family: $sans-serif
+
+  .card
+    @include span-columns(4 of 12)
+    @include omega(3n)
+
+    background-color: #f4f4f4
+    border: 1px solid #ddd
+    height: 460px
+    margin-bottom: 40px
+    text-align: center
+
+    h3
+      font-size: 1.5em
+      font-family: $sans-serif
+      text-align: center
+      font-weight: 400
+
+    img
+      display: block
+      margin: 0 auto
+      width: 80%
+
+    .price
+      font-size: 1.5em
+      font-family: $sans-serif
+      text-align: center
+      font-weight: 300
+
+    .state
+      font-size: 1.1em
+      font-family: $sans-serif
+      text-align: center
+      padding-bottom: 1em
+
+    .action
+      font-family: $sans-serif
+      background-color: $violet
+      color: #fff
+      text-decoration: none
+      padding: 0.5em 1em

@@ -1,0 +1,64 @@
+<h2>Reservations on My Items</h2>
+
+<div class="container">
+  <% if @incoming_reservations.empty? %>
+    <p>No reservations have been made for items you have posted. </p>
+  <% else %>
+    <% @incoming_reservations.each do |r| %>
+      <div class="card">
+        <h3>From <%= r.start_date.to_s(:short) %> to <%= r.end_date.to_s(:short) %></h3>
+        <%= image_tag r.item.previews.first.image.url(:thumb) %>
+        <p class="price">$<%= r.price %></p>
+
+        <% case r.state.to_sym %>
+        <% when :pending_approval %>
+          <p class="state">Submitted by <%= r.user.name %>. </p>
+        <% when :approved %>
+          <p class="state">Approved by you. </p>
+        <% when :rejected %>
+          <p class="state">Rejected by you. </p>
+        <% when :cancelled %>
+          <p class="state">Cancelled. </p>
+        <% when :paid %>
+          <p class="state">Already paid for. </p>
+        <% end %>
+
+        <%= link_to 'Approve', approve_reservation_path(r), class: 'action', data: {confirm: 'Do you really wanna approve this reservation? '}, method: :post if r.may_approve? %>
+        <%= link_to 'Reject', reject_reservation_path(r), class: 'action', data: {confirm: 'Do you really wanna reject this reservation? '}, method: :post if r.may_reject? %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+<h2>Reservations I Made</h2>
+
+<div class="container">
+  <% if @reservations.empty? %>
+    <p>You have not made any reservations yet. </p>
+  <% else %>
+    <% @reservations.each do |r| %>
+      <div class="card">
+        <h3>From <%= r.start_date.to_s(:short) %> to <%= r.end_date.to_s(:short) %></h3>
+        <%= image_tag r.item.previews.first.image.url(:thumb) %>
+        <p class="price">$<%= r.price %></p>
+
+        <% case r.state.to_sym %>
+        <% when :pending_approval %>
+          <p class="state">Waiting for item owner's approval. </p>
+        <% when :approved %>
+          <p class="state">Approved by the item owner. Now pay! </p>
+        <% when :rejected %>
+          <p class="state">Rejected by the item owner. </p>
+        <% when :cancelled %>
+          <p class="state">Cancelled. </p>
+        <% when :paid %>
+          <p class="state">You're all set ;)</p>
+        <% end %>
+
+        <%= link_to 'Pay', pay_reservation_path(r), class: 'action' if r.may_pay? %>
+        <%= link_to 'Cancel', cancel_reservation_path(r), class: 'action', data: {confirm: 'Do you really wanna cancel this reservation? '}, method: :post if r.may_cancel? %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

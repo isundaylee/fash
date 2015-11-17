@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: {minimum: 3, maximum: 50}
 
   has_many :reservations
+  has_many :items
+
+  def incoming_reservations
+    items.map(&:reservations).map(&:not_self_reserved).map(&:all).map(&:to_a).flatten
+  end
 end

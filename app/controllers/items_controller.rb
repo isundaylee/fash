@@ -37,13 +37,13 @@ class ItemsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.item = @item
     @reservation.user = current_user
-
+    @reservation.self_reserved = (@reservation.item.user == current_user)
     @reservation.save!
 
-    if @reservation.item.user == current_user
+    if @reservation.self_reserved?
       redirect_to item_path(@item), flash: {success: 'You have successfully reserved those days! '}
     else
-      raise NotImplementedError
+      redirect_to reservations_path, flash: {success: 'You have successfully submitted the reservation. Now wait for the item owner to approve it! '}
     end
   end
 
