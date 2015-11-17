@@ -7,7 +7,7 @@ class PreviewsController < ApplicationController
       redirect_to root_url, flash: {alert: 'You cannot upload previews for items that do not belong to you. '}
     else
       @preview.save!
-      redirect_to item_url(@preview.item), flash: {alert: 'You have successfully added a new image for this item. Continue below to add some more! '}
+      redirect_to item_url(@preview.item), flash: {success: 'You have successfully added a new image for this item. Continue below to add some more! '}
     end
   end
 
