@@ -50,6 +50,8 @@ gem 'aasm'
 gem 'gon'
 gem 'stripe'
 
+gem 'puma'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
