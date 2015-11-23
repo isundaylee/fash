@@ -8,6 +8,7 @@
     <%= f.email_field :email, placeholder: 'your email address' %>
     <%= f.password_field :password, placeholder: 'your password', autocomplete: "off" %>
     <%= f.password_field :password_confirmation, placeholder: 'your password, again :)', autocomplete: "off" %>
+    <%= f.text_field :address, placeholder: 'your address (dorm name or street address)' %>
 
     <%= f.submit "Sign up" %>
   <% end %>
