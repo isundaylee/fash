@@ -8,7 +8,8 @@
         %td{class: (d.present? && @item.available_on?(d)) ? '' : 'unavailable', 'data-day' => (d.present? ? d.day : nil)}
           - unless d.nil?
             = d.day
-  = form_for @item.reservations.new, url: reserve_item_path(@item) do |f|
-    = f.hidden_field :start_date
-    = f.hidden_field :end_date
-    = f.hidden_field :item_id
+= form_for @item.reservations.new, url: reserve_item_path(@item) do |f|
+  = f.hidden_field :start_date
+  = f.hidden_field :end_date
+  = f.hidden_field :item_id
+  = hidden_field_tag :authenticity_token, form_authenticity_token
