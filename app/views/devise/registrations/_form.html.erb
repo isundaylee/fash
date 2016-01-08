@@ -1,0 +1,22 @@
+<% is_new ||= false %>
+<% password_placeholder = is_new ? 'your password' : 'new password (leave blank if you don\'t want to change it' %>
+<% password_confirmation_placeholder = is_new ? 'your password, again :)' : 'your new password, again :)' %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'centre-form', method: (is_new ? :post : :put)}) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= f.text_field :name, placeholder: 'your name', autofocus: true %>
+  <%= f.email_field :email, placeholder: 'your email address' %>
+  <%= f.password_field :password, placeholder: password_placeholder, autocomplete: "off" %>
+  <%= f.password_field :password_confirmation, placeholder: password_confirmation_placeholder, autocomplete: "off" %>
+  <%= f.text_field :address, placeholder: 'your address (dorm name or street address)' %>
+
+  <%= f.password_field :current_password, placeholder: 'your current password', autocomplete: 'off' unless is_new %>
+
+  <% unless is_new %>
+    <h3>Update My Avatar</h3>
+    <%= f.file_field :avatar %>
+  <% end %>
+
+  <%= f.submit is_new ? "Sign up" : "Update My Profile" %>
+<% end %>
