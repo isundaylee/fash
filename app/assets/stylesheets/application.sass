@@ -145,7 +145,13 @@ footer
   margin-left: auto
   margin-right: auto
 
-  input
+  label
+    font-weight: 200
+    font-family: $sans-serif
+    font-size: 1.1em
+    clear: right
+
+  input, textarea
     width: 100%
     border: 1px solid #CCCCCC
     padding: 0.5em 0.8em
@@ -159,6 +165,10 @@ footer
 
     &::placeholder
       color: #FFFFFF
+
+  input[type=radio]
+    display: inline
+    width: auto
 
   input[type=submit]
     margin-top: 3em

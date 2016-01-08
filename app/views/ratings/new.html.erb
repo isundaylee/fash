@@ -1,0 +1,22 @@
+<h2>Rate Your Experience</h2>
+
+<%= form_for [@reservation, @rating], html: {class: 'centre-form'} do |f| %>
+  <%= f.label :rating, "How was your experience with this reservation? " %>
+  <br>
+
+  <%= f.radio_button :rating, 1 %>
+  <%= f.label :rating_1, 'Satisfied. ' %>
+  <br>
+
+  <%= f.radio_button :rating, 0 %>
+  <%= f.label :rating_0, 'Neutral. ' %>
+  <br>
+
+  <%= f.radio_button :rating, -1 %>
+  <%= f.label 'rating_-1', 'Not satisfied. ' %>
+  <br>
+
+  <%= f.text_area :review, placeholder: 'Any comments? ' %>
+
+  <%= f.submit 'Rate & Review' %>
+<% end %>

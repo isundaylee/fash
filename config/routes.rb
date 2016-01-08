@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'rating/new'
+
+  get 'rating/create'
+
   get 'items/new'
 
   devise_for :users, controllers: {registrations: 'registrations'}
@@ -20,6 +24,10 @@ Rails.application.routes.draw do
       post 'approve'
       post 'reject'
       post 'pay'
+      get 'rate'
+    end
+
+    resources :ratings, only: [:new, :create] do
     end
   end
 

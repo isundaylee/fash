@@ -29,6 +29,7 @@
 
         <%= link_to 'Approve', approve_reservation_path(r), class: 'action', data: {confirm: 'Do you really wanna approve this reservation? '}, method: :post if r.may_approve? %>
         <%= link_to 'Reject', reject_reservation_path(r), class: 'action', data: {confirm: 'Do you really wanna reject this reservation? '}, method: :post if r.may_reject? %>
+        <%= link_to 'Rate & Review', new_reservation_rating_path(r), class: 'action' if r.may_rate?(current_user) %>
       </div>
     <% end %>
   <% end %>
@@ -74,6 +75,7 @@
           <% end %>
         <% end %>
         <%= link_to 'Cancel', cancel_reservation_path(r), class: 'action', data: {confirm: 'Do you really wanna cancel this reservation? '}, method: :post if r.may_cancel? %>
+        <%= link_to 'Rate & Review', new_reservation_rating_path(r), class: 'action' if r.may_rate?(current_user) %>
       </div>
     <% end %>
   <% end %>

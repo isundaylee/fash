@@ -8,6 +8,8 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :item
 
+  has_many :ratings
+
   enum state: [
     :pending_approval,
     :approved,
@@ -26,6 +28,10 @@ class Reservation < ActiveRecord::Base
     state :paid
     state :cancelled
     state :rejected
+    state :pickup_scheduled
+    state :picked_up
+    state :delivery_scheduled
+    state :delivered
 
     event :approve do
       transitions from: :pending_approval, to: :approved
@@ -66,5 +72,12 @@ class Reservation < ActiveRecord::Base
 
   def blocking?
     !(cancelled? || rejected?)
+  end
+
+  def may_rate?(by_user)
+    return false unless delivered?
+    return false unless (by_user.id == user.id || by_user.id == item.user.id)
+    return false unless ratings.find_by(user_id: by_user.id).nil?
+    return true
   end
 end
