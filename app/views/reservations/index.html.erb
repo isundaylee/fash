@@ -15,12 +15,16 @@
           <p class="state">Submitted by <%= r.user.name %>. </p>
         <% when :approved %>
           <p class="state">Approved by you. </p>
-        <% when :rejected %>
-          <p class="state">Rejected by you. </p>
-        <% when :cancelled %>
-          <p class="state">Cancelled. </p>
         <% when :paid %>
           <p class="state">Already paid for. </p>
+        <% when :cancelled %>
+          <p class="state">Cancelled. </p>
+        <% when :rejected %>
+          <p class="state">Rejected by you. </p>
+        <% when :pickup_scheduled, :picked_up, :delivery_scheduled %>
+          <p class="state">Being delivered. </p>
+        <% when :delivered %>
+          <p class="state">Delivered</p>
         <% end %>
 
         <%= link_to 'Approve', approve_reservation_path(r), class: 'action', data: {confirm: 'Do you really wanna approve this reservation? '}, method: :post if r.may_approve? %>
@@ -48,12 +52,18 @@
           <p class="state">Waiting for item owner's approval. </p>
         <% when :approved %>
           <p class="state">Approved by the item owner. Now pay! </p>
-        <% when :rejected %>
-          <p class="state">Rejected by the item owner. </p>
-        <% when :cancelled %>
-          <p class="state">Cancelled. </p>
         <% when :paid %>
           <p class="state">You're all set ;)</p>
+        <% when :cancelled %>
+          <p class="state">Cancelled. </p>
+        <% when :rejected %>
+          <p class="state">Rejected by the item owner. </p>
+        <% when :pickup_scheduled %>
+          <p class="state">Awaiting pickup. </p>
+        <% when :picked_up, :delivery_scheduled %>
+          <p class="state">Being delivered. </p>
+        <% when :delivered %>
+          <p class="state">Delivered</p>
         <% end %>
 
         <% if r.may_pay? %>

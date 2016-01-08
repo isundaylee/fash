@@ -8,7 +8,17 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :item
 
-  enum state: [:pending_approval, :approved, :paid, :cancelled, :rejected]
+  enum state: [
+    :pending_approval,
+    :approved,
+    :paid,
+    :cancelled,
+    :rejected,
+    :pickup_scheduled,
+    :picked_up,
+    :delivery_scheduled,
+    :delivered
+  ]
 
   aasm column: :state do
     state :pending_approval, initial: true
@@ -31,6 +41,22 @@ class Reservation < ActiveRecord::Base
 
     event :cancel do
       transitions from: [:approved, :pending_approval], to: :cancelled
+    end
+
+    event :schedule_pickup do
+      transitions from: :paid, to: :pickup_scheduled
+    end
+
+    event :pickup do
+      transitions from: :pickup_scheduled, to: :picked_up
+    end
+
+    event :schedule_delivery do
+      transitions from: :picked_up, to: :delivery_scheduled
+    end
+
+    event :deliver do
+      transitions from: :delivery_scheduled, to: :delivered
     end
   end
 
