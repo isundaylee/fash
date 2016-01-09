@@ -1,8 +1,11 @@
-<h2>Reservations on My Items</h2>
+<ul class="segbtn inline-centre" id="type_toggle">
+  <li class="active" id="reveal_outgoing"><a>Reservations I Made</a></li>
+  <li id="reveal_incoming"><a>Reservations on My Items</a></li>
+</ul>
 
-<div class="container">
+<div class="container" id="incoming_reservations">
   <% if @incoming_reservations.empty? %>
-    <p>No reservations have been made for items you have posted. </p>
+    <p class="empty-msg">No reservations have been made for items you have posted. </p>
   <% else %>
     <% @incoming_reservations.each do |r| %>
       <div class="card">
@@ -35,12 +38,9 @@
   <% end %>
 </div>
 
-
-<h2>Reservations I Made</h2>
-
-<div class="container">
+<div class="container" id="outgoing_reservations">
   <% if @reservations.empty? %>
-    <p>You have not made any reservations yet. </p>
+    <p class="empty-msg">You have not made any reservations yet. </p>
   <% else %>
     <% @reservations.each do |r| %>
       <div class="card">

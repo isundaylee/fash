@@ -25,5 +25,14 @@ ready = ->
           amount: $(this).data('amount')
       e.preventDefault()
 
+    # Incoming/outgoing toggling
+    $.each ['incoming', 'outgoing'], (_, t) ->
+      $('#reveal_' + t).click ->
+        $('#' + t + '_reservations').show()
+        other = if t == 'incoming' then 'outgoing' else 'incoming'
+        $('#' + other + '_reservations').hide()
+        $('#reveal_' + t).addClass('active')
+        $('#reveal_' + other).removeClass('active')
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

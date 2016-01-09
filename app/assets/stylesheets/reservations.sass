@@ -3,9 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #reservations_index
-  p
-    font-size: 1.1em
+  .empty-msg
+    font-size: 1.8em
+    font-weight: 200
     font-family: $sans-serif
+    text-align: center
+    margin: 140px 0
 
   .card
     @include span-columns(4 of 12)
@@ -49,3 +52,10 @@
 
     .stripe-token-form
       display: none
+
+  #incoming_reservations
+    display: none
+
+  #type_toggle
+    margin-top: 20px
+    margin-bottom: 50px
